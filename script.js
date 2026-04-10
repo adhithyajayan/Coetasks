@@ -35,43 +35,40 @@ function openModal() {
   document.body.style.overflow = 'hidden';
 }
 
-// Function to close modal
+
 function closeModal() {
   modal.classList.remove('active');
   document.body.style.overflow = '';
-  // Reset form when closing
+ 
   setTimeout(() => {
     articleForm.reset();
   }, 300);
 }
 
-// Event Listeners for Modal
+
 if (openModalBtn) openModalBtn.addEventListener('click', openModal);
 if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
 if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeModal);
 
-// Close modal when clicking outside the content box
+
 modal.addEventListener('click', (e) => {
   if (e.target === modal) {
     closeModal();
   }
 });
 
-// Handle Form Submission
+
 articleForm.addEventListener('submit', (e) => {
-  e.preventDefault(); // Prevent page reload
+  e.preventDefault(); 
   
-  // Here, a real app would send data to a backend.
-  // For demonstration, we simply show an alert and close the modal.
+
   const title = document.getElementById('title').value;
   alert(`Article "${title}" saved successfully!`);
   
   closeModal();
 });
 
-// ===============================
-// Filter Buttons Interactivity
-// ===============================
+
 const filterBtns = document.querySelectorAll('.filter-btn');
 
 filterBtns.forEach(btn => {
@@ -83,15 +80,13 @@ filterBtns.forEach(btn => {
   });
 });
 
-// ===============================
-// Chart.js Setup (Data Viz 10)
-// ===============================
+
 document.addEventListener('DOMContentLoaded', () => {
   const ctx = document.getElementById('viewsChart').getContext('2d');
   
-  // Creating a nice gradient for the line chart
+
   const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-  gradient.addColorStop(0, 'rgba(67, 24, 255, 0.4)'); // Primary color with opacity
+  gradient.addColorStop(0, 'rgba(67, 24, 255, 0.4)'); 
   gradient.addColorStop(1, 'rgba(67, 24, 255, 0.0)');
 
   const viewsChart = new Chart(ctx, {
@@ -110,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pointRadius: 4,
         pointHoverRadius: 6,
         fill: true,
-        tension: 0.4 // Creates smooth, curved lines
+        tension: 0.4 
       }]
     },
     options: {
@@ -118,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: false // We hide the legend for a cleaner look
+          display: false 
         },
         tooltip: {
           backgroundColor: '#2B3674',
@@ -140,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: '#A3AED0',
             font: { family: "'Inter', sans-serif", size: 12 },
             callback: function(value) {
-              return value / 1000 + 'k'; // Format as '12k', '25k'
+              return value / 1000 + 'k'; 
             }
           }
         },
