@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Portal Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts for Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Phosphor Icons for highly polished iconography -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Chart.js for Data Viz -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  
+  <!-- Sidebar (15) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <i class="ph-fill ph-newspaper"></i>
+        <span>NewsDash</span>
+      </div>
+      <button class="close-sidebar-btn" id="closeSidebarBtn">
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active">
+        <i class="ph ph-squares-four"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="ph ph-article"></i>
+        <span>Articles</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="ph ph-users"></i>
+        <span>Authors</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="ph ph-chart-line-up"></i>
+        <span>Analytics</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="ph ph-gear"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <div class="pro-upgrade">
+        <h4>Upgrade to Pro</h4>
+        <p>Get advanced analytics features.</p>
+        <button class="btn btn-primary btn-sm">Upgrade Now</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <!-- Header (10) -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="menu-btn" id="menuBtn">
+          <i class="ph ph-list"></i>
+        </button>
+        <h1 class="page-title">Dashboard Overview</h1>
+      </div>
+      
+      <div class="header-right">
+        <div class="search-box">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="text" placeholder="Search news..." />
+        </div>
+        <button class="icon-btn">
+          <i class="ph ph-bell"></i>
+          <span class="badge">3</span>
+        </button>
+        <div class="user-profile">
+          <img src="https://i.pravatar.cc/150?img=11" alt="User Profile" class="avatar" />
+          <div class="user-info">
+            <span class="user-name">Alex Johnson</span>
+            <span class="user-role">Admin</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Controls (10) -->
+    <div class="controls-bar">
+      <div class="filters">
+        <button class="filter-btn active">All Time</button>
+        <button class="filter-btn">This Month</button>
+        <button class="filter-btn">This Week</button>
+      </div>
+      <button class="btn btn-primary" id="openModalBtn">
+        <i class="ph ph-plus"></i>
+        New Article
+      </button>
+    </div>
+
+    <!-- Main Section (15) -->
+    <div class="dashboard-grid">
+      <!-- Stats Cards -->
+      <div class="stat-card">
+        <div class="stat-icon blue">
+          <i class="ph ph-books"></i>
+        </div>
+        <div class="stat-details">
+          <h3>Total Articles</h3>
+          <p class="stat-number">1,245</p>
+          <span class="stat-trend positive"><i class="ph ph-trend-up"></i> +12%</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">
+          <i class="ph ph-users-three"></i>
+        </div>
+        <div class="stat-details">
+          <h3>Active Readers</h3>
+          <p class="stat-number">45.2k</p>
+          <span class="stat-trend positive"><i class="ph ph-trend-up"></i> +8%</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">
+          <i class="ph ph-eye"></i>
+        </div>
+        <div class="stat-details">
+          <h3>Page Views</h3>
+          <p class="stat-number">1.2M</p>
+          <span class="stat-trend positive"><i class="ph ph-trend-up"></i> +24%</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange">
+          <i class="ph ph-chat-teardrop-text"></i>
+        </div>
+        <div class="stat-details">
+          <h3>Comments</h3>
+          <p class="stat-number">8,432</p>
+          <span class="stat-trend negative"><i class="ph ph-trend-down"></i> -3%</span>
+        </div>
+      </div>
+
+      <!-- Data Viz (10) -->
+      <div class="chart-card">
+        <div class="card-header">
+          <h2>Reading Trends</h2>
+          <button class="icon-btn-small"><i class="ph ph-dots-three"></i></button>
+        </div>
+        <div class="chart-container">
+          <canvas id="viewsChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Recent Articles Table -->
+      <div class="recent-articles-card">
+        <div class="card-header">
+          <h2>Recent Articles</h2>
+          <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Views</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="article-title">The Future of AI in 2026</td>
+                <td>Technology</td>
+                <td><div class="author-cell"><img src="https://i.pravatar.cc/150?img=33" alt=""> Sarah T.</div></td>
+                <td><span class="status-badge published">Published</span></td>
+                <td>45.2k</td>
+              </tr>
+              <tr>
+                <td class="article-title">Global Markets Rally Today</td>
+                <td>Finance</td>
+                <td><div class="author-cell"><img src="https://i.pravatar.cc/150?img=12" alt=""> Mike R.</div></td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>--</td>
+              </tr>
+              <tr>
+                <td class="article-title">Top 10 Travel Destinations</td>
+                <td>Lifestyle</td>
+                <td><div class="author-cell"><img src="https://i.pravatar.cc/150?img=25" alt=""> Anna K.</div></td>
+                <td><span class="status-badge published">Published</span></td>
+                <td>12.8k</td>
+              </tr>
+              <tr>
+                <td class="article-title">Climate Summit Outcomes</td>
+                <td>Politics</td>
+                <td><div class="author-cell"><img src="https://i.pravatar.cc/150?img=47" alt=""> David L.</div></td>
+                <td><span class="status-badge draft">Draft</span></td>
+                <td>--</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal (10) -->
+  <div class="modal-overlay" id="articleModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Article</h2>
+        <button class="close-modal-btn" id="closeModalBtn">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <form id="articleForm" class="modal-body">
+        <div class="form-group">
+          <label for="title">Article Title</label>
+          <input type="text" id="title" placeholder="Enter headline here..." required />
+        </div>
+        <div class="form-group-row">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="" disabled selected>Select category</option>
+              <option value="tech">Technology</option>
+              <option value="finance">Finance</option>
+              <option value="lifestyle">Lifestyle</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="content">Short Description</label>
+          <textarea id="content" rows="4" placeholder="Brief summary of the article..." required></textarea>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelModalBtn">Cancel</button>
+        <button type="submit" form="articleForm" class="btn btn-primary">Save Article</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
